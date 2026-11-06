@@ -1,0 +1,80 @@
+# Store assets — Taka Counter 1.0.0
+
+All artwork here is generated from the app itself, so screenshots always match
+the shipped UI. Rebuild everything with:
+
+```bash
+flutter test test/screenshots_test.dart   # writes screenshots/*.png
+python tool/make_store_assets.py          # writes store/*
+```
+
+The generator is `tool/make_store_assets.py`; it needs Pillow only.
+
+## Files
+
+### App icon
+
+| File | Dimensions | Format | Play use |
+| --- | --- | --- | --- |
+| `store/icon-512.png` | 512 × 512 | 32-bit PNG (alpha allowed) | Hi-res icon |
+
+Source: `assets/images/app_icon.png` (1024 × 1024), resized with Lanczos.
+
+### Feature graphic
+
+| File | Dimensions | Format | Play use |
+| --- | --- | --- | --- |
+| `store/feature-graphic-1024x500.png` | 1024 × 500 | PNG, no alpha | Feature graphic |
+
+Uses the same forest/lime palette as the app, the launcher icon, the wordmark,
+and the line “Cash counting, made calm.”
+
+### Phone screenshots
+
+1080 × 1920 (9:16), PNG, each side within Play's 2:1 limit. Upload in this
+order.
+
+| # | File | Caption | Screen shown |
+| --- | --- | --- | --- |
+| 1 | `store/screenshots/01-home-light.png` | Every taka, clear at a glance. | Home with the active count |
+| 2 | `store/screenshots/02-counter.png` | One count, all your entries. | Cash counter / khata |
+| 3 | `store/screenshots/03-add-entry.png` | Type it. Skip the taps. | Add-entry sheet, ৳1,000 × 15 |
+| 4 | `store/screenshots/04-note-counter-filled.png` | Notes and coins, counted your way. | Counting mat, ৳29,635 tray |
+| 5 | `store/screenshots/05-breakdown.png` | Know exactly what's inside. | Saved breakdown, editable |
+| 6 | `store/screenshots/06-history.png` | Past counts, one tap away. | History with totals |
+| 7 | `store/screenshots/07-voucher.png` | Hand over a clean voucher. | A5 voucher preview |
+| 8 | `store/screenshots/08-settings-data.png` | Offline by design. Yours by default. | Privacy, export, backup |
+
+The captions are English because Pillow in this environment has no Raqm
+shaping engine, so Bengali text cannot be rendered correctly inside images.
+Bengali copy belongs in the Play listing text (see `LISTING.md`).
+
+### Source captures
+
+`screenshots/*.png` are the raw 780 × 1688 captures (ratio 1:2.16). They are
+useful for the README and design review but are **not valid Play screenshots**
+because each side must be at most twice the other. The files in
+`store/screenshots/` are recomposed at 1080 × 1920 with the caption area added.
+
+## Play Console upload map
+
+| Play field | File / value |
+| --- | --- |
+| App icon | `store/icon-512.png` |
+| Feature graphic | `store/feature-graphic-1024x500.png` |
+| Phone screenshots | 8 files in `store/screenshots/` |
+| Tablet screenshots | optional — same captures can be recomposed at 1600 × 2560 if needed |
+| Short description | `LISTING.md` → English / বাংলা |
+| Full description | `LISTING.md` → English / বাংলা |
+| Release notes | `LISTING.md` → What's new |
+
+## Quality checks
+
+- Icon is exactly 512 × 512, 32-bit PNG (alpha allowed, under 1 MB).
+- Feature graphic has no transparency and is exactly 1024 × 500.
+- Screenshots: 1080 × 1920, RGB PNG, no device frame cut-offs, no status-bar
+  clutter, captions inside safe margins.
+- No real currency scans, no third-party logos, no people, no personal data.
+- Screenshot totals use Indian lakh/crore grouping (`৳1,93,130`) to match the
+  app.
+- The screenshots show demo data only. A normal install starts empty.
