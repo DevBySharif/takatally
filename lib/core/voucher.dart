@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:path_provider/path_provider.dart';
@@ -26,15 +27,12 @@ String voucherNumber(TallySession session) {
   return 'TT-${date.year}$month$day-$serial';
 }
 
-/// Builds a printable A5 cash-count voucher as a PDF file in the temp folder.
+/// Builds a printable A5 cash-count voucher and returns its PDF bytes.
 ///
 /// Long counts continue onto as many A5 pages as they need: the entry table
 /// repeats its header and the signature block only appears once, on the last
 /// page, so a busy shop never loses entries off the bottom of the sheet.
-Future<File> buildVoucherPdf(
-  TallySession session, {
-  Directory? directory,
-}) async {
+Future<Uint8List> buildVoucherPdfBytes(TallySession session) async {
   final regular = pw.Font.ttf(
     await rootBundle.load('assets/fonts/NotoSansBengali-400.ttf'),
   );
@@ -86,17 +84,29 @@ Future<File> buildVoucherPdf(
     ),
   );
 
-  final bytes = await doc.save();
-  final dir = directory ?? await getTemporaryDirectory();
+  return doc.save();
+}
+
+/// A stable, human-readable filename for the exported voucher.
+String voucherPdfName(TallySession session) {
   final slug = session.title
       .toLowerCase()
       .replaceAll(RegExp(r'[^a-z0-9]+'), '-')
       .replaceAll(RegExp(r'^-+|-+$'), '');
   final stamp = formatDateShort(session.createdAt).replaceAll(' ', '-');
   final serial = voucherNumber(session).split('-').last;
+  return 'voucher-${slug.isEmpty ? 'count' : slug}-$stamp-$serial.pdf';
+}
+
+/// Builds the voucher as a PDF file in the temporary folder.
+Future<File> buildVoucherPdf(
+  TallySession session, {
+  Directory? directory,
+}) async {
+  final bytes = await buildVoucherPdfBytes(session);
+  final dir = directory ?? await getTemporaryDirectory();
   final file = File(
-    '${dir.path}${Platform.pathSeparator}voucher-'
-    '${slug.isEmpty ? 'count' : slug}-$stamp-$serial.pdf',
+    '${dir.path}${Platform.pathSeparator}${voucherPdfName(session)}',
   );
   await file.writeAsBytes(bytes, flush: true);
   return file;

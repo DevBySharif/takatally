@@ -16,8 +16,9 @@ coins by hand — no account, no ads, no cloud.
   active count as one main amount. The note-and-coin breakdown is saved with
   that entry: reopen the count to see exactly how many of each note and coin
   went in, change one row, or use "Edit all" to retype the whole tray.
-- **Vouchers** — turn any count into an A5 cash-count voucher with a voucher
-  number, entry table, total in words, and signature lines. Share it as a PDF.
+- **Vouchers** - turn any count into an A5 cash-count voucher with a voucher
+  number, entry table, total in words, and signature lines. Download it as a
+  PDF, print it, or share it.
 - **Excel, backup & import** — export every count as a two-sheet `.xlsx`
   (including a breakdown column), save a JSON backup, and import Excel, CSV, or
   a backup file. Exported files can be saved to Google Drive from the Android

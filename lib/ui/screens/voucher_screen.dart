@@ -1,4 +1,7 @@
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:printing/printing.dart';
 
 import '../../core/export_service.dart';
 import '../../core/formatters.dart';
@@ -30,25 +33,63 @@ class _VoucherScreenState extends State<VoucherScreen> {
     return null;
   }
 
-  Future<void> _share(
-    Future<void> Function() task, {
-    required String done,
-  }) async {
+  Future<void> _run(Future<String?> Function() task) async {
     if (_busy) return;
     setState(() => _busy = true);
     try {
-      await task();
+      final message = await task();
+      if (mounted && message != null) {
+        AppSnack.show(
+          context,
+          message,
+          icon: Icons.check_circle_outline_rounded,
+        );
+      }
     } catch (error) {
       if (mounted) {
         AppSnack.show(
           context,
-          'Could not create the file. Try again.',
+          'Could not create the PDF. Try again.',
           icon: Icons.error_outline_rounded,
         );
       }
     } finally {
       if (mounted) setState(() => _busy = false);
     }
+  }
+
+  Future<String?> _downloadPdf(TallySession session) async {
+    final bytes = await buildVoucherPdfBytes(session);
+    final name = voucherPdfName(session);
+    final path = await FilePicker.saveFile(
+      dialogTitle: 'Save voucher PDF',
+      fileName: name,
+      type: FileType.custom,
+      allowedExtensions: const ['pdf'],
+      bytes: bytes,
+    );
+    if (kIsWeb) return 'PDF download started';
+    if (path == null) return null;
+    return 'Saved $name';
+  }
+
+  Future<String?> _printPdf(TallySession session) async {
+    final bytes = await buildVoucherPdfBytes(session);
+    await Printing.layoutPdf(
+      name: voucherPdfName(session),
+      onLayout: (_) async => bytes,
+    );
+    return null;
+  }
+
+  Future<String?> _sharePdf(TallySession session) async {
+    final file = await buildVoucherPdf(session);
+    await ExportService.shareFile(
+      file,
+      subject: 'Cash count voucher · ${session.title}',
+      text: 'Voucher ${voucherNumber(session)} · ${formatMoney(session.total)}',
+    );
+    return null;
   }
 
   @override
@@ -76,7 +117,7 @@ class _VoucherScreenState extends State<VoucherScreen> {
           physics: const BouncingScrollPhysics(),
           slivers: [
             SliverPadding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 120),
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 210),
               sliver: SliverList.list(
                 children: [
                   Row(
@@ -92,7 +133,7 @@ class _VoucherScreenState extends State<VoucherScreen> {
                         tooltip: 'Export Excel',
                         onTap: _busy
                             ? null
-                            : () => _share(
+                            : () => _run(
                                   () async {
                                     final file = await ExportService.workbook(
                                       [session],
@@ -104,8 +145,8 @@ class _VoucherScreenState extends State<VoucherScreen> {
                                       text:
                                           'Count sheet for ${session.title}',
                                     );
+                                    return 'Excel ready';
                                   },
-                                  done: 'Excel ready',
                                 ),
                       ),
                       const SizedBox(width: 8),
@@ -114,19 +155,7 @@ class _VoucherScreenState extends State<VoucherScreen> {
                         tooltip: 'Share PDF',
                         onTap: _busy
                             ? null
-                            : () => _share(
-                                  () async {
-                                    final file = await buildVoucherPdf(session);
-                                    await ExportService.shareFile(
-                                      file,
-                                      subject:
-                                          'Cash count voucher · ${session.title}',
-                                      text:
-                                          'Voucher ${voucherNumber(session)} · ${formatMoney(session.total)}',
-                                    );
-                                  },
-                                  done: 'Voucher ready',
-                                ),
+                            : () => _run(() => _sharePdf(session)),
                       ),
                     ],
                   ),
@@ -134,7 +163,7 @@ class _VoucherScreenState extends State<VoucherScreen> {
                   Text('Voucher', style: context.texts.headlineLarge),
                   const SizedBox(height: 5),
                   Text(
-                    'Print it, save it to Drive, or hand it over with the cash.',
+                    'Download or print it, or hand it over with the cash.',
                     style: context.texts.bodyMedium?.copyWith(
                       color: p.inkSoft,
                     ),
@@ -157,7 +186,8 @@ class _VoucherScreenState extends State<VoucherScreen> {
                         const SizedBox(width: 10),
                         Expanded(
                           child: Text(
-                            'Tap share, then choose Drive, Files, or Print. '
+                            'Download saves the PDF to Files or Drive. '
+                            'Print opens your phone’s print dialog. '
                             'Everything is generated on this phone.',
                             style: context.texts.bodySmall?.copyWith(
                               color: p.inkSoft,
@@ -180,23 +210,41 @@ class _VoucherScreenState extends State<VoucherScreen> {
           top: false,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 10, 20, 12),
-            child: PrimaryButton(
-              label: _busy ? 'Preparing…' : 'Share as PDF',
-              icon: Icons.ios_share_rounded,
-              height: 54,
-              enabled: !_busy,
-              onTap: () => _share(
-                () async {
-                  final file = await buildVoucherPdf(session);
-                  await ExportService.shareFile(
-                    file,
-                    subject: 'Cash count voucher · ${session.title}',
-                    text:
-                        'Voucher ${voucherNumber(session)} · ${formatMoney(session.total)}',
-                  );
-                },
-                done: 'Voucher ready',
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                PrimaryButton(
+                  label: _busy ? 'Preparing…' : 'Download PDF',
+                  icon: Icons.file_download_outlined,
+                  height: 54,
+                  enabled: !_busy,
+                  onTap: () => _run(() => _downloadPdf(session)),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Expanded(
+                      child: GhostButton(
+                        label: 'Print',
+                        icon: Icons.print_outlined,
+                        expanded: true,
+                        height: 48,
+                        onTap: _busy ? null : () => _run(() => _printPdf(session)),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: GhostButton(
+                        label: 'Share',
+                        icon: Icons.ios_share_rounded,
+                        expanded: true,
+                        height: 48,
+                        onTap: _busy ? null : () => _run(() => _sharePdf(session)),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
@@ -234,33 +282,33 @@ class _VoucherPaper extends StatelessWidget {
         children: [
           Row(
             children: [
-              Container(
-                width: 34,
-                height: 34,
-                decoration: BoxDecoration(
-                  color: p.forestDeep,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  '৳',
-                  style: context.texts.titleMedium?.copyWith(
-                    color: p.lime,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-              ),
+              const TakaLogo(size: 34, showWordmark: false),
               const SizedBox(width: 9),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'TAKA COUNTER',
-                    style: context.texts.labelSmall?.copyWith(
-                      fontSize: 11,
-                      letterSpacing: 2,
-                      color: p.ink,
-                      fontWeight: FontWeight.w800,
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Taka',
+                          style: context.texts.labelSmall?.copyWith(
+                            fontSize: 11,
+                            letterSpacing: -0.2,
+                            color: p.ink,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        TextSpan(
+                          text: 'Tally',
+                          style: context.texts.labelSmall?.copyWith(
+                            fontSize: 11,
+                            letterSpacing: -0.2,
+                            color: p.accent,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Text(

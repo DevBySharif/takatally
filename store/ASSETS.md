@@ -50,7 +50,7 @@ order.
 | 4 | `store/screenshots/04-note-counter-filled.png` | Notes and coins, counted your way. | Counting mat, ৳29,635 tray |
 | 5 | `store/screenshots/05-breakdown.png` | Know exactly what's inside. | Saved breakdown, editable |
 | 6 | `store/screenshots/06-history.png` | Past counts, one tap away. | History with totals |
-| 7 | `store/screenshots/07-voucher.png` | Hand over a clean voucher. | A5 voucher preview |
+| 7 | `store/screenshots/07-voucher.png` | Hand over a clean voucher. | A5 voucher preview with Download / Print / Share |
 | 8 | `store/screenshots/08-settings-data.png` | Offline by design. Yours by default. | Privacy, export, backup |
 
 The captions are English because Pillow in this environment has no Raqm

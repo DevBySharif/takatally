@@ -34,6 +34,9 @@ flutter test                    # all tests must pass
   - [ ] reopen the entry, edit the breakdown, save;
   - [ ] export Excel, open it, check the Breakdown column;
   - [ ] save a backup, import it, check merge and replace;
+  - [ ] download a voucher PDF through the “Save as” dialog and open it from
+        Files;
+  - [ ] open the Android print dialog from the voucher screen (Print);
   - [ ] share a voucher PDF;
   - [ ] toggle dark mode and haptics;
   - [ ] rotate / resize text to 1.3× and check no overflow;

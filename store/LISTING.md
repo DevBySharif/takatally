@@ -40,7 +40,7 @@ NOTES AND COINS, ONE TOTAL
 
 SHARE A CLEAN VOUCHER
 • Turn a count into an A5 PDF cash-count voucher with a voucher number, entry table, total in words, and signature lines.
-• Print it or send it on WhatsApp, email, or Drive.
+• Download the PDF straight to Files or Drive, print it with your phone’s print dialog, or share it on WhatsApp or email.
 
 BACKUP AND EXPORT
 • Export every count to a real Excel (.xlsx) workbook, with a notes-and-coins column.
@@ -69,7 +69,7 @@ First release.
 
 • Cash counter with typed amounts and note quantities
 • Note and coin counting mat with saved breakdowns
-• A5 PDF cash-count vouchers
+• A5 PDF cash-count vouchers — download, print, or share
 • Excel, CSV, and JSON import and export
 • Light and dark themes
 • Fully offline, no ads, no account
@@ -112,7 +112,7 @@ translations → Bengali.
 
 পরিষ্কার ভাউচার
 • যেকোনো কাউন্ট থেকে A5 PDF ভাউচার — ভাউচার নম্বর, টেবিল, কথায় টোটাল আর সইয়ের লাইন।
-• প্রিন্ট করুন বা WhatsApp, ইমেইল, Drive-এ পাঠান।
+• PDF সোজা Files বা Drive-এ ডাউনলোড করুন, ফোনের প্রিন্ট ডায়ালগে প্রিন্ট করুন, বা WhatsApp, ইমেইলে পাঠান।
 
 ব্যাকআপ ও এক্সপোর্ট
 • সব কাউন্ট আসল Excel (.xlsx) ফাইলে এক্সপোর্ট করুন, নোট-কয়েনের কলামসহ।

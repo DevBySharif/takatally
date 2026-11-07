@@ -158,6 +158,16 @@ void main() {
     expect(String.fromCharCodes(bytes.take(4)), '%PDF');
   });
 
+  test('voucher bytes and filename are ready for save or print', () async {
+    final bytes = await buildVoucherPdfBytes(_session());
+    expect(bytes.length, greaterThan(1000));
+    expect(String.fromCharCodes(bytes.take(4)), '%PDF');
+
+    final name = voucherPdfName(_session());
+    expect(name, endsWith('.pdf'));
+    expect(name, contains('thursday-cash-count'));
+  });
+
   test('a long voucher paginates instead of clipping entries', () async {
     final dir = Directory.systemTemp.createTempSync('taka_voucher_long_');
     addTearDown(() => dir.deleteSync(recursive: true));

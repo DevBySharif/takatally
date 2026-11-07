@@ -8,8 +8,8 @@ the artifact set to upload to Play Console.
 | | |
 | --- | --- |
 | File | `build/app/outputs/bundle/release/app-release.aab` |
-| Size | 48,385,946 bytes (46.14 MiB) |
-| SHA-256 | `829ECB9231C70E70F94CE2433C3D044ED52D92772169669CEE9E6F07D0606A92` |
+| Size | 48,418,015 bytes (46.17 MiB) |
+| SHA-256 | `B97885E3A63279B1F931FAB3E558D43B2F245939735E3928530D110955EB5F06` |
 | Package | `com.devbysharif.takacounter` |
 | versionCode / versionName | `1` / `1.0.0` |
 | minSdk / targetSdk / compileSdk | 21 / 36 / 36 |
@@ -34,13 +34,25 @@ armeabi-v7a, and x86_64 (`libflutter.so.sym`).
 | | |
 | --- | --- |
 | File | `build/app/outputs/flutter-apk/app-release.apk` |
-| Size | 29,809,775 bytes (28.43 MiB) |
-| SHA-256 | `C96CC6A32E04A6BE283D2B6D195A4AC122D030DF8C79938F7BA37E620A630D21` |
+| Size | 29,841,837 bytes (28.46 MiB) |
+| SHA-256 | `1D340CE7B7A75EE6A11FCDE7F4529EDF2B07D9E22B59D0EB5334598EDFE32BAF` |
 | Signature | verified, v2/v3 |
 
 The APK and AAB contain the same freshly compiled Dart snapshot
-(`libapp.so` SHA-256 `39b9dd37…781528`), so the local APK reflects exactly what
+(`libapp.so` SHA-256 `fdbe7cf0…92c9`), so the local APK reflects exactly what
 Play will install.
+
+## What changed in this build
+
+- Voucher screen now has three actions: **Download PDF** (system “Save as”
+  dialog via the Storage Access Framework, so it can go to Files or Drive),
+  **Print** (Android print dialog via `printing`), and **Share** (share sheet).
+- PDF bytes are built once in `lib/core/voucher.dart`
+  (`buildVoucherPdfBytes`, `voucherPdfName`) and shared by all three actions.
+- Added `printing: ^5.14.3`; its plugin manifest adds only a private
+  `FileProvider` and **no** INTERNET permission.
+- Voucher preview header now uses the tally `TakaLogo` with the TakaTally
+  wordmark instead of the old currency-glyph tile.
 
 ## Signing certificate
 
@@ -73,7 +85,7 @@ This is added by AndroidX for runtime receiver registration. The app declares
 
 ```
 flutter analyze  → No issues found!
-flutter test     → 27 tests, all passed
+flutter test     → 28 tests, all passed
 ```
 
 Coverage includes money formatting, home/counter/note-counter flows, typed
