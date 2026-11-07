@@ -1,11 +1,11 @@
 {
-    "name": "taka_counter",
-    "short_name": "taka_counter",
+    "name": "TakaTally: Note Counter",
+    "short_name": "TakaTally",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#173F2E",
+    "theme_color": "#173F2E",
+    "description": "A calm, private cash and note counter made for Bangladesh.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

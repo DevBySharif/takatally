@@ -1,19 +1,19 @@
-# Privacy Policy — Taka Counter
+# Privacy Policy — TakaTally
 
-**Effective date:** 6 November 2026
-**App:** Taka Counter (`com.devbysharif.takacounter`)
+**Effective date:** 7 November 2026
+**App:** TakaTally (`com.devbysharif.takacounter`)
 **Developer:** DevBySharif
-**Contact:** hello@takacounter.app
+**Contact:** hello@takatally.app
 
 ## The short version
 
-Taka Counter does not collect, transmit, sell, or share your personal data.
+TakaTally does not collect, transmit, sell, or share your personal data.
 The app works fully offline. Your counts, notes, and settings stay in the app's
 local storage on your own device.
 
 ## What the app stores
 
-Taka Counter saves the following on your device:
+TakaTally saves the following on your device:
 
 - the cash counts you create, including titles, dates, amounts, notes, and
   note/coin breakdowns;
@@ -38,7 +38,7 @@ app's data is not included in Google's device backup.
 
 ## Exports and sharing
 
-Taka Counter can create files only when you ask it to:
+TakaTally can create files only when you ask it to:
 
 - an Excel workbook (`.xlsx`), a JSON backup, or a CSV file;
 - an A5 PDF voucher;
@@ -55,7 +55,7 @@ only to restore the data you selected.
 
 ## Children's privacy
 
-Taka Counter is a financial utility for adults and is not directed to children
+TakaTally is a financial utility for adults and is not directed to children
 under 13. The app does not knowingly collect any information from anyone,
 including children.
 
@@ -70,7 +70,7 @@ local data.
 ## Your choices and deletion
 
 - Delete individual entries or whole counts inside the app at any time.
-- Clear all app data from Android Settings → Apps → Taka Counter → Storage.
+- Clear all app data from Android Settings → Apps → TakaTally → Storage.
 - Uninstalling the app removes its local data from the device.
 
 Because we never receive your data, there is nothing for us to delete on a
@@ -84,23 +84,23 @@ noted in the Play Store release notes.
 
 ## Contact
 
-Questions about privacy in Taka Counter:
+Questions about privacy in TakaTally:
 
 **DevBySharif**
-hello@takacounter.app
+hello@takatally.app
 
 ---
 
-# গোপনীয়তা নীতি — টাকা কাউন্টার
+# গোপনীয়তা নীতি — টাকাট্যালি
 
-**কার্যকর তারিখ:** ৬ নভেম্বর ২০২৬
-**অ্যাপ:** টাকা কাউন্টার (`com.devbysharif.takacounter`)
+**কার্যকর তারিখ:** ৭ নভেম্বর ২০২৬
+**অ্যাপ:** টাকাট্যালি (`com.devbysharif.takacounter`)
 **ডেভেলপার:** DevBySharif
-**যোগাযোগ:** hello@takacounter.app
+**যোগাযোগ:** hello@takatally.app
 
 ## সংক্ষেপে
 
-টাকা কাউন্টার আপনার কোনো ব্যক্তিগত তথ্য সংগ্রহ, পাঠানো, বিক্রি বা শেয়ার করে
+টাকাট্যালি আপনার কোনো ব্যক্তিগত তথ্য সংগ্রহ, পাঠানো, বিক্রি বা শেয়ার করে
 না। অ্যাপটি সম্পূর্ণ অফলাইনে কাজ করে। আপনার হিসাব, নোট ও সেটিংস আপনার নিজের
 ফোনের অ্যাপ-স্টোরেজেই থাকে।
 
@@ -144,20 +144,20 @@ hello@takacounter.app
 
 ## শিশুদের গোপনীয়তা
 
-টাকা কাউন্টার প্রাপ্তবয়স্কদের জন্য একটি আর্থিক ইউটিলিটি; ১৩ বছরের কম শিশুদের
+টাকাট্যালি প্রাপ্তবয়স্কদের জন্য একটি আর্থিক ইউটিলিটি; ১৩ বছরের কম শিশুদের
 জন্য নয়। অ্যাপটি কারও কাছ থেকে — শিশুদের কাছ থেকেও — কোনো তথ্য সংগ্রহ করে না।
 
 ## নিরাপত্তা
 
 Android-এর অ্যাপ স্যান্ডবক্স আপনার ডেটা রক্ষা করে; রুট বা ডিভাইস আপত্তিজনকভাবে
-ক্ষতিগ্রস্ত না হলে অন্য অ্যাপ টাকা কাউন্টারের প্রাইভেট স্টোরেজ পড়তে পারে না।
+ক্ষতিগ্রস্ত না হলে অন্য অ্যাপ টাকাট্যালির প্রাইভেট স্টোরেজ পড়তে পারে না।
 যেহেতু কিছুই পাঠানো হয় না, ইন্টারনেটে আটকে নেওয়ার মতো ডেটাও নেই। ফোনের লক
 চালু রাখুন এবং গুরুত্বপূর্ণ লোকাল ডেটার মতোই ব্যাকআপ রাখুন।
 
 ## আপনার পছন্দ ও ডিলিট
 
 - যেকোনো সময় অ্যাপের ভেতর থেকে এন্ট্রি বা পুরো কাউন্ট ডিলিট করুন।
-- Android Settings → Apps → Taka Counter → Storage থেকে সব অ্যাপ ডেটা মুছুন।
+- Android Settings → Apps → TakaTally → Storage থেকে সব অ্যাপ ডেটা মুছুন।
 - অ্যাপ আনইনস্টল করলে ফোন থেকে এর লোকাল ডেটা মুছে যায়।
 
 আমরা কখনো ডেটা পাই না, তাই আমাদের সার্ভারে ডিলিট করার কিছু থাকে না। ডিলিট
@@ -171,7 +171,7 @@ Android-এর অ্যাপ স্যান্ডবক্স আপনার
 
 ## যোগাযোগ
 
-টাকা কাউন্টারের গোপনীয়তা নিয়ে প্রশ্ন:
+টাকাট্যালির গোপনীয়তা নিয়ে প্রশ্ন:
 
 **DevBySharif**
-hello@takacounter.app
+hello@takatally.app

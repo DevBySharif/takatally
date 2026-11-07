@@ -16,14 +16,14 @@ const _ink = PdfColor.fromInt(0xFF17211B);
 const _inkSoft = PdfColor.fromInt(0xFF5C6B62);
 const _line = PdfColor.fromInt(0xFFDCD6C6);
 
-/// A stable voucher number for a count, e.g. `TC-20261105-4821`.
+/// A stable voucher number for a count, e.g. `TT-20261105-4821`.
 String voucherNumber(TallySession session) {
   final date = session.createdAt;
   final month = date.month.toString().padLeft(2, '0');
   final day = date.day.toString().padLeft(2, '0');
   final seed = session.id.codeUnits.fold<int>(7, (sum, unit) => sum + unit);
   final serial = (seed % 9000 + 1000).toString();
-  return 'TC-${date.year}$month$day-$serial';
+  return 'TT-${date.year}$month$day-$serial';
 }
 
 /// Builds a printable A5 cash-count voucher as a PDF file in the temp folder.
@@ -107,7 +107,7 @@ pw.Widget _runningFooter() {
     mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
     children: [
       pw.Text(
-        'Taka Counter · cash count voucher',
+        'TakaTally · cash count voucher',
         style: pw.TextStyle(fontSize: 7, color: _inkSoft),
       ),
       pw.Text(

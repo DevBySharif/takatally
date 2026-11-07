@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/// The warm, tactile brand palette used across Taka Counter.
+/// The warm, tactile brand palette used across TakaTally.
 @immutable
 class TakaPalette extends ThemeExtension<TakaPalette> {
   const TakaPalette({

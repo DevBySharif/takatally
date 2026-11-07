@@ -1,4 +1,4 @@
-# Release checklist — Taka Counter 1.0.0
+# Release checklist — TakaTally 1.0.0
 
 Work top to bottom. Commands assume the project root
 (`D:\Android App\Taka Counter`).
@@ -8,7 +8,7 @@ Work top to bottom. Commands assume the project root
 - [ ] Back up `android/app/upload-keystore.jks` **and** `android/key.properties`
       to two separate encrypted locations. See `KEYSTORE.md`.
 - [ ] Confirm the passwords are in a password manager.
-- [ ] Confirm you control `hello@takacounter.app` (or change
+- [ ] Confirm you control `hello@takatally.app` (or change
       `AppInfo.supportEmail` and every store document to a mailbox you read).
 - [ ] Host `store/privacy-policy.html` at a public HTTPS URL (GitHub Pages,
       Netlify, or your own site) and keep the URL.
@@ -133,11 +133,12 @@ Get-FileHash build/app/outputs/bundle/release/app-release.aab -Algorithm SHA256
 
 ## 8. Play Console — store listing
 
-- [ ] App name, short description, full description from `LISTING.md`.
+- [ ] App name, short description, full description from `LISTING.md`
+      (title: **TakaTally: Note Counter**).
 - [ ] Bengali translation added (title, short, full, release notes).
 - [ ] Icon, feature graphic, and 8 screenshots uploaded.
 - [ ] Category **Finance**; tags optional.
-- [ ] Support email `hello@takacounter.app`.
+- [ ] Support email `hello@takatally.app`.
 - [ ] Phone and tablet screenshots: phone required; tablet optional.
 - [ ] Release notes for `1.0.0` pasted.
 
@@ -165,8 +166,7 @@ Get-FileHash build/app/outputs/bundle/release/app-release.aab -Algorithm SHA256
 
 ## 11. After release
 
-- [ ] Tag the source state you shipped (git is not initialized in this
-      workspace; create a repo or archive the folder).
+- [ ] Tag the source state you shipped (`git tag v1.0.0` and push).
 - [ ] Keep the AAB, mapping/symbol files, keystore backup, and this checklist
       together.
 - [ ] For every future release: bump versionCode, rerun analyze/tests, rebuild,

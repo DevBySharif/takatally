@@ -1,6 +1,6 @@
-# Build report — Taka Counter 1.0.0
+# Build report — TakaTally 1.0.0
 
-Built locally from a clean tree on **6 November 2026** (Asia/Dhaka). This is
+Built locally from a clean tree on **7 November 2026** (Asia/Dhaka). This is
 the artifact set to upload to Play Console.
 
 ## Upload artifact
@@ -8,8 +8,8 @@ the artifact set to upload to Play Console.
 | | |
 | --- | --- |
 | File | `build/app/outputs/bundle/release/app-release.aab` |
-| Size | 48,518,696 bytes (46.27 MiB) |
-| SHA-256 | `5A6BB4F75184D244BC4B76AA0EE3ECD44B09B91D4BA88BC92532B6347FC9215F` |
+| Size | 48,385,946 bytes (46.14 MiB) |
+| SHA-256 | `829ECB9231C70E70F94CE2433C3D044ED52D92772169669CEE9E6F07D0606A92` |
 | Package | `com.devbysharif.takacounter` |
 | versionCode / versionName | `1` / `1.0.0` |
 | minSdk / targetSdk / compileSdk | 21 / 36 / 36 |
@@ -19,17 +19,27 @@ Native symbols are present under
 `BUNDLE-METADATA/com.android.tools.build.debugsymbols/` for arm64-v8a,
 armeabi-v7a, and x86_64 (`libflutter.so.sym`).
 
+## Brand in this build
+
+- Play display name: **TakaTally: Note Counter** (launcher label: `TakaTally`).
+- New five-stroke tally logo: four lime strokes with a gold cross-stroke on
+  forest. No currency glyph and no circular badge.
+- Adaptive icon, Android 13 monochrome/themed icon, splash logo, web icons, and
+  favicon all come from `tool/make_brand.py`.
+- Package ID remains `com.devbysharif.takacounter`; local storage keys are
+  unchanged, so existing counts survive the rename.
+
 ## Local verification APK
 
 | | |
 | --- | --- |
 | File | `build/app/outputs/flutter-apk/app-release.apk` |
-| Size | 29,936,371 bytes (28.55 MiB) |
-| SHA-256 | `5897C97AF8A44A519AD131DF12BBDA40ABF99633BB13565AAF7B0DC774582A13` |
+| Size | 29,809,775 bytes (28.43 MiB) |
+| SHA-256 | `C96CC6A32E04A6BE283D2B6D195A4AC122D030DF8C79938F7BA37E620A630D21` |
 | Signature | verified, v2/v3 |
 
 The APK and AAB contain the same freshly compiled Dart snapshot
-(`libapp.so` SHA-256 `f38198a1…1a72fe`), so the local APK reflects exactly what
+(`libapp.so` SHA-256 `39b9dd37…781528`), so the local APK reflects exactly what
 Play will install.
 
 ## Signing certificate
@@ -100,7 +110,7 @@ cmdline-tools would make the tool's check pass without changing the artifact.
 ## Still user-supplied
 
 - Public HTTPS URL for `store/privacy-policy.html`
-- A monitored mailbox for `hello@takacounter.app`
+- A monitored mailbox for `hello@takatally.app`
 - Off-device backup of `android/app/upload-keystore.jks` +
   `android/key.properties`
 - Play Console acceptance of the Data safety / content rating answers

@@ -158,7 +158,7 @@ class SettingsScreen extends StatelessWidget {
                             children: [
                               _SettingsRow(
                                 icon: Icons.star_outline_rounded,
-                                title: 'Rate Taka Counter',
+                                title: 'Rate TakaTally',
                                 subtitle: 'A review helps a lot',
                                 onTap: () => _rate(context),
                                 trailing: _chevron(context),
@@ -210,7 +210,7 @@ class SettingsScreen extends StatelessWidget {
                               ),
                               _SettingsRow(
                                 icon: Icons.info_outline_rounded,
-                                title: 'About Taka Counter',
+                                title: 'About TakaTally',
                                 subtitle: 'Version ${AppInfo.version}',
                                 onTap: () => _showAbout(context),
                                 trailing: _chevron(context),
@@ -322,7 +322,7 @@ class SettingsScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(height: 2),
                                 Text(
-                                  'Taka Counter is free, calm and focused on one job.',
+                                  'TakaTally is free, calm and focused on one job.',
                                   style: context.texts.bodySmall?.copyWith(
                                     color:
                                         Colors.white.withValues(alpha: 0.58),
@@ -415,8 +415,8 @@ class SettingsScreen extends StatelessWidget {
       final file = await ExportService.workbook(store.sessions);
       await ExportService.shareFile(
         file,
-        subject: 'Taka Counter · Excel export',
-        text: 'All counts exported from Taka Counter.',
+        subject: 'TakaTally · Excel export',
+        text: 'All counts exported from TakaTally.',
       );
     } catch (_) {
       if (context.mounted) {
@@ -435,8 +435,8 @@ class SettingsScreen extends StatelessWidget {
       final file = await ExportService.backup(store.sessions);
       await ExportService.shareFile(
         file,
-        subject: 'Taka Counter · Backup',
-        text: 'Taka Counter backup. Keep it safe.',
+        subject: 'TakaTally · Backup',
+        text: 'TakaTally backup. Keep it safe.',
       );
     } catch (_) {
       if (context.mounted) {
@@ -613,10 +613,10 @@ class SettingsScreen extends StatelessWidget {
               const SizedBox(height: 26),
               const TakaLogo(size: 64, showWordmark: false),
               const SizedBox(height: 14),
-              Text('Taka Counter', style: sheetContext.texts.headlineSmall),
+              Text('TakaTally', style: sheetContext.texts.headlineSmall),
               const SizedBox(height: 5),
               Text(
-                'Version ${AppInfo.version}',
+                'Note Counter · Version ${AppInfo.version}',
                 style: sheetContext.texts.bodySmall?.copyWith(
                   color: p.inkSoft,
                 ),
@@ -659,7 +659,7 @@ class SettingsScreen extends StatelessWidget {
               ),
               const SizedBox(height: 18),
               Text(
-                '© ${DateTime.now().year} Taka Counter',
+                '© ${DateTime.now().year} TakaTally',
                 style: sheetContext.texts.bodySmall?.copyWith(
                   color: p.inkSoft.withValues(alpha: 0.7),
                   fontSize: 9.5,
@@ -712,7 +712,7 @@ class SettingsScreen extends StatelessWidget {
                 icon: Icons.person_off_outlined,
                 title: 'No account',
                 body:
-                    'There is no sign-up, no email and no profile. Taka Counter never needs to know who you are.',
+                    'There is no sign-up, no email and no profile. TakaTally never needs to know who you are.',
               ),
               const SizedBox(height: 16),
               _PrivacyPoint(
@@ -749,7 +749,7 @@ class SettingsScreen extends StatelessWidget {
                     const SizedBox(width: 9),
                     Expanded(
                       child: Text(
-                        'Taka Counter works fully offline. Your cash is your business.',
+                        'TakaTally works fully offline. Your cash is your business.',
                         style: sheetContext.texts.bodySmall?.copyWith(
                           color: p.accent,
                           fontWeight: FontWeight.w600,

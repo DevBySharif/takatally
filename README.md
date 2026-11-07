@@ -1,4 +1,4 @@
-# Taka Counter
+# TakaTally
 
 A calm, premium cash-counting app for Bangladeshi taka. Keep a local khata of
 money in and out, and open the counting mat when you want to tally notes and
@@ -29,6 +29,15 @@ coins by hand — no account, no ads, no cloud.
 - **Bengali details** — Bengali numerals on note artwork, Bengali note names, and
   Indian lakh/crore grouping (`৳1,93,130`).
 - **Private by default** — data stays in local storage on the device.
+
+## Brand mark
+
+The logo is a five-stroke tally: four lime strokes with one gold stroke across
+them, drawn on deep forest. It reads as “count” even at 16 px and avoids the
+circled currency glyph used by other taka apps. `tool/make_brand.py` renders
+the launcher icon, adaptive foreground, Android 13 monochrome icon, splash
+mark, favicon, and web icons from the same geometry the in-app `TakaLogo`
+painter uses.
 
 ## Screenshots
 
@@ -110,15 +119,18 @@ that renders every screen in light and dark mode into `screenshots/`.
 Regenerate the Play Store artwork after UI changes:
 
 ```bash
+python tool/make_brand.py
 flutter test test/screenshots_test.dart
 python tool/make_store_assets.py
 ```
 
 ## Play Store
 
+- Display name: **TakaTally: Note Counter**
 - Package: `com.devbysharif.takacounter`
 - Version: `1.0.0+1`, target SDK 36
 - Category: Finance · no ads · no account · fully offline
+- Support: `hello@takatally.app`
 - Store copy: [`store/LISTING.md`](store/LISTING.md)
 - Privacy policy: [`store/PRIVACY_POLICY.md`](store/PRIVACY_POLICY.md) and
   [`store/privacy-policy.html`](store/privacy-policy.html)

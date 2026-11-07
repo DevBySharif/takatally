@@ -123,7 +123,7 @@ class ExportService {
 
   static Future<File> backup(List<TallySession> sessions) async {
     final payload = <String, dynamic>{
-      'app': 'Taka Counter',
+      'app': 'TakaTally',
       'format': 1,
       'exportedAt': DateTime.now().toIso8601String(),
       'sessions': sessions.map((session) => session.toJson()).toList(),

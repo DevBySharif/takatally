@@ -209,7 +209,7 @@ class HomeScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Taka Counter ${AppInfo.version}',
+                              'TakaTally ${AppInfo.version}',
                               style: context.texts.bodySmall?.copyWith(
                                 color: p.inkSoft,
                                 fontSize: 11,

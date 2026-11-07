@@ -58,7 +58,7 @@ void main() {
   test('voucher numbers are stable for a count', () {
     final session = _session();
     final first = voucherNumber(session);
-    expect(first, startsWith('TC-20261105-'));
+    expect(first, startsWith('TT-20261105-'));
     expect(voucherNumber(session), first);
   });
 
@@ -66,7 +66,7 @@ void main() {
     final file = await _write(
       'taka_test_backup.json',
       jsonEncode({
-        'app': 'Taka Counter',
+        'app': 'TakaTally',
         'format': 1,
         'sessions': [_session().toJson()],
       }),

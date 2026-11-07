@@ -1,7 +1,7 @@
-# Play Store listing — Taka Counter
+# Play Store listing — TakaTally
 
 Package: `com.devbysharif.takacounter` · Version: `1.0.0` (versionCode 1)
-Category: **Finance** · Contact: `hello@takacounter.app` · Developer: **DevBySharif**
+Category: **Finance** · Contact: `hello@takatally.app` · Developer: **DevBySharif**
 
 Copy limits: title ≤ 30, short description ≤ 80, full description ≤ 4000
 characters. The counts below are within those limits.
@@ -10,10 +10,10 @@ characters. The counts below are within those limits.
 
 ## English (default)
 
-### App name (12 / 30)
+### App name (23 / 30)
 
 ```
-Taka Counter
+TakaTally: Note Counter
 ```
 
 ### Short description (69 / 80)
@@ -25,7 +25,7 @@ Count cash and notes offline. Fast, private, made for Bangladesh.
 ### Full description
 
 ```
-Taka Counter is a calm, private cash-counting app for Bangladesh — a khata for money in and out, plus a counting mat for notes and coins.
+TakaTally is a calm, private cash-counting app for Bangladesh — a khata for money in and out, plus a counting mat for notes and coins.
 
 COUNT CASH YOUR WAY
 • Add cash, credit, and debit entries by typing the amount and the number of notes.
@@ -57,7 +57,7 @@ PRIVATE BY DEFAULT
 • Works fully offline. Your counts stay in local storage on your device.
 • The app requests no internet, location, contacts, camera, or storage permission.
 
-Whether you run a shop, manage a household fund, or count the day's collection, Taka Counter keeps every taka clear.
+Whether you run a shop, manage a household fund, or count the day's collection, TakaTally keeps every taka clear.
 
 Made with care for Bangladesh by DevBySharif.
 ```
@@ -82,10 +82,10 @@ First release.
 Add this as a second localization in Play Console → Store listing → Manage
 translations → Bengali.
 
-### App name (12 / 30)
+### App name (24 / 30)
 
 ```
-টাকা কাউন্টার
+টাকাট্যালি: নোট কাউন্টার
 ```
 
 ### Short description (≤ 80)
@@ -97,7 +97,7 @@ translations → Bengali.
 ### Full description
 
 ```
-টাকা কাউন্টার — বাংলাদেশের জন্য তৈরি শান্ত, প্রাইভেট ক্যাশ কাউন্টিং অ্যাপ। একটি খাতা যেখানে আয়-ব্যয় থাকবে, আর একটি কাউন্টিং ম্যাট যেখানে নোট-কয়েন গুনবেন।
+টাকাট্যালি — বাংলাদেশের জন্য তৈরি শান্ত, প্রাইভেট ক্যাশ কাউন্টিং অ্যাপ। একটি খাতা যেখানে আয়-ব্যয় থাকবে, আর একটি কাউন্টিং ম্যাট যেখানে নোট-কয়েন গুনবেন।
 
 নিজের মতো টাকা গুনুন
 • টাকার অ্যামাউন্ট ও নোটের সংখ্যা টাইপ করে ক্যাশ, ক্রেডিট ও ডেবিট যোগ করুন।
@@ -129,7 +129,7 @@ translations → Bengali.
 • সম্পূর্ণ অফলাইনে কাজ করে। আপনার হিসাব ফোনের লোকাল স্টোরেজেই থাকে।
 • অ্যাপটি ইন্টারনেট, লোকেশন, কন্টাক্ট, ক্যামেরা বা স্টোরেজ পারমিশন চায় না।
 
-দোকান চালান, সংসারের ফান্ড সামলান, বা দিনের কালেকশন গুনুন — টাকা কাউন্টার প্রতিটি টাকা পরিষ্কার রাখে।
+দোকান চালান, সংসারের ফান্ড সামলান, বা দিনের কালেকশন গুনুন — টাকাট্যালি প্রতিটি টাকা পরিষ্কার রাখে।
 
 বাংলাদেশের জন্য যত্নে তৈরি — DevBySharif।
 ```
@@ -173,5 +173,5 @@ settings/data.
 - **Content rating:** Everyone / PEGI 3 (see `CONTENT_RATING.md`)
 - **Data safety:** no data collected or shared (see `DATA_SAFETY.md`)
 - **Privacy policy URL:** host `PRIVACY_POLICY.html` and paste its public URL
-- **Support email:** hello@takacounter.app
+- **Support email:** hello@takatally.app
 - **Website:** optional; the privacy page can serve as the site

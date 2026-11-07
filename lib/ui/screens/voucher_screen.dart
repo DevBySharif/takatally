@@ -515,7 +515,7 @@ class _VoucherPaper extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Generated with Taka Counter',
+                'Generated with TakaTally',
                 style: context.texts.labelSmall?.copyWith(
                   fontSize: 7,
                   color: p.inkSoft.withValues(alpha: 0.7),

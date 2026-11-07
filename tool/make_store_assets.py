@@ -15,6 +15,8 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
+from make_brand import draw_tally
+
 ROOT = Path(__file__).resolve().parent.parent
 SHOTS = ROOT / "screenshots"
 OUT = ROOT / "store"
@@ -112,7 +114,7 @@ def compose_screenshot(source: Path, headline: str, index: int) -> Path:
     draw_tracked(
         draw,
         (68, 66),
-        "TAKA COUNTER",
+        "TAKATALLY",
         font(700, 20),
         (23, 63, 46, 190),
         4.6,
@@ -170,7 +172,9 @@ def compose_screenshot(source: Path, headline: str, index: int) -> Path:
 def build_icon() -> Path:
     OUT.mkdir(parents=True, exist_ok=True)
     icon = Image.open(IMAGES / "app_icon.png").convert("RGBA")
-    icon.resize((512, 512), Image.LANCZOS).save(
+    flat = Image.new("RGB", icon.size, FOREST)
+    flat.paste(icon, (0, 0), icon)
+    flat.resize((512, 512), Image.LANCZOS).save(
         OUT / "icon-512.png", "PNG", optimize=True
     )
     return OUT / "icon-512.png"
@@ -184,7 +188,17 @@ def build_feature() -> Path:
     canvas.alpha_composite(dotted(size, (255, 255, 255), 16, spacing=24, dot=1.4))
 
     draw = ImageDraw.Draw(canvas)
-    draw.text((812, 84), "৳", font=font(800, 340), fill=(*LIME, 26))
+
+    # Faint tally watermark on the right, echoing the launcher mark.
+    watermark = Image.new("RGBA", (520, 520), (0, 0, 0, 0))
+    draw_tally(
+        ImageDraw.Draw(watermark),
+        520,
+        scale=1.0,
+        bar_colour=(*LIME, 34),
+        slash_colour=(*GOLD, 48),
+    )
+    canvas.alpha_composite(watermark, (640, -10))
 
     icon = Image.open(IMAGES / "app_icon.png").convert("RGBA").resize(
         (150, 150), Image.LANCZOS
@@ -192,28 +206,34 @@ def build_feature() -> Path:
     icon_mask = rounded_mask(icon.size, 34)
     canvas.paste(icon, (100, 175), icon_mask)
 
-    draw.text((282, 158), "Taka Counter", font=font(800, 66), fill=(255, 255, 255, 255))
+    draw.text((282, 126), "TakaTally", font=font(800, 72), fill=(255, 255, 255, 255))
     draw.text(
-        (284, 244),
+        (284, 216),
+        "Note Counter",
+        font=font(700, 30),
+        fill=(*GOLD, 255),
+    )
+    draw.text(
+        (284, 266),
         "Cash counting, made calm.",
-        font=font(600, 26),
+        font=font(600, 24),
         fill=(*LIME, 255),
     )
     draw.text(
-        (284, 292),
+        (284, 310),
         "Offline  ·  Private  ·  Made for Bangladesh",
-        font=font(500, 19),
+        font=font(500, 18),
         fill=(255, 255, 255, 150),
     )
     draw.rounded_rectangle(
-        (284, 336, 546, 380),
+        (284, 352, 546, 396),
         radius=22,
         fill=(255, 255, 255, 22),
         outline=(255, 255, 255, 40),
         width=1,
     )
     draw.text(
-        (306, 347),
+        (306, 363),
         "No ads. No account.",
         font=font(700, 17),
         fill=(*LIME, 235),

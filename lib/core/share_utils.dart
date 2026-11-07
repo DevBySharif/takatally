@@ -30,7 +30,7 @@ String sessionShareText(TallySession session) {
   }
   buffer
     ..writeln('')
-    ..write('Counted with Taka Counter · ${AppInfo.developer}');
+    ..write('Counted with TakaTally · ${AppInfo.developer}');
   return buffer.toString();
 }
 
@@ -47,10 +47,10 @@ Future<void> shareApp() async {
   await SharePlus.instance.share(
     ShareParams(
       text:
-          'Taka Counter — the calm, private way to count your cash. '
+          'TakaTally — the calm, private way to count your cash. '
           'By ${AppInfo.developer}. '
           'Try it today: ${AppInfo.playStoreUrl}',
-      subject: 'Taka Counter',
+      subject: 'TakaTally',
     ),
   );
 }
@@ -71,8 +71,8 @@ Future<bool> sendFeedback() async {
     scheme: 'mailto',
     path: AppInfo.supportEmail,
     queryParameters: {
-      'subject': 'Taka Counter feedback',
-      'body': 'Hi Taka Counter team,\n\n',
+      'subject': 'TakaTally feedback',
+      'body': 'Hi TakaTally team,\n\n',
     },
   );
   return launchUrl(uri);

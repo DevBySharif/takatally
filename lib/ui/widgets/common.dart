@@ -22,6 +22,11 @@ class TakaLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final p = context.taka;
+    final wordmark = context.texts.titleLarge?.copyWith(
+      fontWeight: FontWeight.w800,
+      letterSpacing: -0.6,
+      height: 1.05,
+    );
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -39,28 +44,12 @@ class TakaLogo extends StatelessWidget {
               ),
             ],
           ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                width: size * 0.58,
-                height: size * 0.58,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: p.lime, width: size * 0.042),
-                ),
-              ),
-              Text(
-                '৳',
-                style: TextStyle(
-                  fontFamily: 'NotoSansBengali',
-                  fontSize: size * 0.34,
-                  height: 1,
-                  fontWeight: FontWeight.w700,
-                  color: light ? p.forest : p.lime,
-                ),
-              ),
-            ],
+          child: CustomPaint(
+            painter: _TallyMarkPainter(
+              bar: light ? p.forest : p.lime,
+              slash: p.gold,
+              shadow: p.forestDeep,
+            ),
           ),
         ),
         if (showWordmark) ...[
@@ -69,12 +58,22 @@ class TakaLogo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                'Taka Counter',
-                style: context.texts.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: -0.5,
-                  color: light ? Colors.white : p.ink,
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Taka',
+                      style: wordmark?.copyWith(
+                        color: light ? Colors.white : p.ink,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'Tally',
+                      style: wordmark?.copyWith(
+                        color: light ? p.lime : p.accent,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Text(
@@ -93,6 +92,94 @@ class TakaLogo extends StatelessWidget {
       ],
     );
   }
+}
+
+/// The five-stroke tally that anchors the TakaTally identity: four upright
+/// strokes for the count, one gold stroke across them to finish the five.
+class _TallyMarkPainter extends CustomPainter {
+  const _TallyMarkPainter({
+    required this.bar,
+    required this.slash,
+    required this.shadow,
+    this.showShadow = true,
+  });
+
+  final Color bar;
+  final Color slash;
+  final Color shadow;
+  final bool showShadow;
+
+  static const _centreY = 0.505;
+  static const _barWidth = 0.078;
+  static const _barHeight = 0.415;
+  static const _centres = <double>[0.343, 0.446, 0.549, 0.652];
+  static const _slashStart = (0.292, 0.286);
+  static const _slashEnd = (0.708, 0.724);
+  static const _markScale = 1.16;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final unit = size.width * _markScale;
+    final origin = Offset(
+      (size.width - unit) / 2,
+      (size.height - unit) / 2,
+    );
+
+    Offset point(double x, double y) =>
+        origin + Offset(x * unit, y * unit);
+
+    final barWidth = _barWidth * unit;
+    final barHeight = _barHeight * unit;
+    final radius = Radius.circular(barWidth / 2);
+
+    void drawMark(Offset shift, Color colour) {
+      final paint = Paint()..color = colour;
+      for (final cx in _centres) {
+        final centre = point(cx, _centreY) + shift;
+        canvas.drawRRect(
+          RRect.fromRectAndRadius(
+            Rect.fromCenter(
+              center: centre,
+              width: barWidth,
+              height: barHeight,
+            ),
+            radius,
+          ),
+          paint,
+        );
+      }
+      final stroke = Paint()
+        ..color = colour
+        ..strokeWidth = barWidth
+        ..strokeCap = StrokeCap.round;
+      canvas.drawLine(
+        point(_slashStart.$1, _slashStart.$2) + shift,
+        point(_slashEnd.$1, _slashEnd.$2) + shift,
+        stroke,
+      );
+    }
+
+    if (showShadow) {
+      drawMark(Offset(unit * 0.012, unit * 0.012), shadow.withValues(alpha: 0.22));
+    }
+    drawMark(Offset.zero, bar);
+    final slashStroke = Paint()
+      ..color = slash
+      ..strokeWidth = barWidth
+      ..strokeCap = StrokeCap.round;
+    canvas.drawLine(
+      point(_slashStart.$1, _slashStart.$2),
+      point(_slashEnd.$1, _slashEnd.$2),
+      slashStroke,
+    );
+  }
+
+  @override
+  bool shouldRepaint(_TallyMarkPainter oldDelegate) =>
+      bar != oldDelegate.bar ||
+      slash != oldDelegate.slash ||
+      shadow != oldDelegate.shadow ||
+      showShadow != oldDelegate.showShadow;
 }
 
 class PageBackground extends StatelessWidget {
@@ -1149,16 +1236,19 @@ class RotatedTakaWatermark extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ink = color.withValues(alpha: opacity);
     return Transform.rotate(
       angle: -math.pi / 18,
-      child: Text(
-        '৳',
-        style: TextStyle(
-          fontFamily: 'NotoSansBengali',
-          fontSize: size,
-          height: 1,
-          fontWeight: FontWeight.w700,
-          color: color.withValues(alpha: opacity),
+      child: SizedBox(
+        width: size,
+        height: size,
+        child: CustomPaint(
+          painter: _TallyMarkPainter(
+            bar: ink,
+            slash: ink,
+            shadow: ink,
+            showShadow: false,
+          ),
         ),
       ),
     );

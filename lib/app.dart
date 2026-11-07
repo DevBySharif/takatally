@@ -19,7 +19,7 @@ class TakaApp extends StatelessWidget {
         animation: store,
         builder: (context, _) {
           return MaterialApp(
-            title: 'Taka Counter',
+            title: 'TakaTally',
             debugShowCheckedModeBanner: false,
             theme: AppTheme.light(),
             darkTheme: AppTheme.dark(),

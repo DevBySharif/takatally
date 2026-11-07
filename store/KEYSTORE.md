@@ -1,4 +1,4 @@
-# Release keystore — Taka Counter
+# Release keystore — TakaTally
 
 > **Back this up before uploading anything to Play.** Losing the upload key is
 > recoverable through Play App Signing, but it is slower and requires a reset
@@ -33,6 +33,11 @@ Valid from: 5 November 2026
 Valid to:   23 March 2054
 Key:        RSA 4096-bit, PKCS12
 ```
+
+The certificate CN still reads `Taka Counter` because the key was created just
+before the rebrand. That string is cosmetic and appears only in certificate
+details; do **not** rotate the key just to change it, because a new key means a
+new signing identity.
 
 Fingerprints (SHA-1 is the one Google Drive OAuth would need):
 
