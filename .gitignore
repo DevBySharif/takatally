@@ -49,3 +49,6 @@ app.*.map.json
 /android/app/upload-keystore.jks
 /android/app/*.jks
 /android/app/*.keystore
+
+# Local upload artifacts (build outputs, never committed)
+dist/
